@@ -1,5 +1,0 @@
-/.idea/*
-!/mod/
-!__init__.py
-!database.py
-!verify.py
