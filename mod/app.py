@@ -9,7 +9,7 @@ class AppList(Resource):
             database.CURALL.execute("SELECT name FROM app")
             return jsonify(database.CURALL.fetchall())
         except:
-            abort(500)
+            abort(404)
 
 
 class AppListDev(Resource):
@@ -18,7 +18,7 @@ class AppListDev(Resource):
             database.CURALL.execute("SELECT name FROM app WHERE author = '%s'" % dev)
             return jsonify(database.CURALL.fetchall())
         except:
-            abort(500)
+            abort(404)
 
 
 class AppAll(Resource):
@@ -27,7 +27,17 @@ class AppAll(Resource):
             database.CURALL.execute("SELECT * FROM app WHERE name = '%s'" % name)
             return jsonify(database.CURALL.fetchall()[0])
         except:
-            abort(500)
+            abort(404)
+
+
+class AppAllTitle(Resource):
+    def get(self, name):
+        try:
+            name = name.replace('_', ' ')
+            database.CURALL.execute("SELECT * FROM app WHERE title = '%s'" % name)
+            return jsonify(database.CURALL.fetchall()[0])
+        except:
+            abort(404)
 
 
 class AppTitle(Resource):
@@ -37,7 +47,7 @@ class AppTitle(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)
 
 
 class AppAuthor(Resource):
@@ -47,7 +57,7 @@ class AppAuthor(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)
 
 
 class AppDescription(Resource):
@@ -57,7 +67,7 @@ class AppDescription(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)
 
 
 class AppULS(Resource):
@@ -67,7 +77,7 @@ class AppULS(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)
 
 
 class AppInstall(Resource):
@@ -77,7 +87,7 @@ class AppInstall(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)
 
 
 class AppReqOS(Resource):
@@ -87,7 +97,7 @@ class AppReqOS(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)
 
 
 class AppReqArch(Resource):
@@ -97,4 +107,4 @@ class AppReqArch(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)

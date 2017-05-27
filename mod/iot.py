@@ -9,7 +9,7 @@ class IotList(Resource):
             database.CURALL.execute("SELECT name FROM iot")
             return jsonify(database.CURALL.fetchall())
         except:
-            abort(500)
+            abort(404)
 
 
 class IotListDev(Resource):
@@ -18,7 +18,7 @@ class IotListDev(Resource):
             database.CURALL.execute("SELECT name FROM iot WHERE author = '%s'" % dev)
             return jsonify(database.CURALL.fetchall())
         except:
-            abort(500)
+            abort(404)
 
 
 class IotAll(Resource):
@@ -27,7 +27,17 @@ class IotAll(Resource):
             database.CURALL.execute("SELECT * FROM iot WHERE name = '%s'" % name)
             return jsonify(database.CURALL.fetchall()[0])
         except:
-            abort(500)
+            abort(404)
+
+
+class IotAllTitle(Resource):
+    def get(self, name):
+        try:
+            name = name.replace('_', ' ')
+            database.CURALL.execute("SELECT * FROM iot WHERE title = '%s'" % name)
+            return jsonify(database.CURALL.fetchall()[0])
+        except:
+            abort(404)
 
 
 class IotTitle(Resource):
@@ -37,7 +47,7 @@ class IotTitle(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)
 
 
 class IotAuthor(Resource):
@@ -47,7 +57,7 @@ class IotAuthor(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)
 
 
 class IotDescription(Resource):
@@ -57,7 +67,7 @@ class IotDescription(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)
 
 
 class IotULS(Resource):
@@ -67,7 +77,7 @@ class IotULS(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)
 
 
 class IotInstall(Resource):
@@ -77,7 +87,7 @@ class IotInstall(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)
 
 
 class IotReqOS(Resource):
@@ -87,4 +97,4 @@ class IotReqOS(Resource):
             result = database.CUR.fetchone()[0]
             return result
         except:
-            abort(500)
+            abort(404)

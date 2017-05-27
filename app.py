@@ -78,4 +78,5 @@ if __name__ == '__main__':
     database.CURALL = database.DB.cursor(cursorclass=MySQLdb.cursors.DictCursor)
     app.config['UPLOAD_FOLDER'] = '/home/ralf/bvm'
     context = ('/etc/letsencrypt/live/api.ralf.ren/fullchain.pem', '/etc/letsencrypt/keys/0000_key-certbot.pem')
-    app.run(host='0.0.0.0', port=443, debug=False, ssl_context=context)
+    app.run()
+    #app.run(host='0.0.0.0', port=443, debug=False, ssl_context=context)
